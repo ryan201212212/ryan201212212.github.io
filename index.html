@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raeyoung Chang</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #fff;
+        }
+
+        a {
+            color: #17a2b8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        nav .left a {
+            font-weight: 600;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        nav .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        nav .social-icons a {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        nav .social-icons a:hover {
+            color: #17a2b8;
+            text-decoration: none;
+        }
+
+        nav .right {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav .right a {
+            color: #333;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        /* Profile Section */
+        .profile {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 3px solid #f0f0f0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+            font-size: 3rem;
+            font-weight: 600;
+        }
+
+        .profile h1 {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .profile .title-line {
+            width: 80px;
+            height: 3px;
+            background: #333;
+            margin: 15px auto;
+        }
+
+        .profile .subtitle {
+            font-size: 1.15rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .cv-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 25px;
+            border: 2px solid #17a2b8;
+            border-radius: 5px;
+            color: #17a2b8;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .cv-btn:hover {
+            background: #17a2b8;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Bio Section */
+        .bio {
+            text-align: justify;
+            margin-bottom: 50px;
+            font-size: 1.05rem;
+            color: #444;
+        }
+
+        .bio p {
+            margin-bottom: 15px;
+        }
+
+        .research-topics {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .research-topics li {
+            margin-bottom: 5px;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, #17a2b8, transparent);
+        }
+
+        /* Updates/News */
+        .updates-list {
+            margin-top: 20px;
+        }
+
+        .update-item {
+            display: flex;
+            gap: 20px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .update-date {
+            color: #888;
+            font-size: 0.9rem;
+            min-width: 100px;
+            font-weight: 500;
+        }
+
+        .update-content {
+            flex: 1;
+        }
+
+        .update-tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .tag-paper {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .tag-award {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .tag-talk {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .tag-teaching {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
+        /* Timeline (Education & Experience) */
+        .timeline-list {
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-logo {
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #fff;
+        }
+
+        .timeline-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Education logos */
+        .logo-uoft { background: linear-gradient(135deg, #002a5c, #1a4a8a); }
+        .logo-sogang { background: linear-gradient(135deg, #8B0000, #c41e3a); }
+        .logo-konkuk { background: linear-gradient(135deg, #006400, #228b22); }
+
+        /* Experience logos */
+        .logo-lg { background: linear-gradient(135deg, #a50034, #d4004c); }
+        .logo-samsung { background: linear-gradient(135deg, #1428a0, #2d4cc8); }
+        .logo-postech { background: linear-gradient(135deg, #003366, #004d99); font-size: 0.7rem; }
+        .logo-hyundai { background: linear-gradient(135deg, #002c5f, #0056b3); font-size: 1.2rem; }
+        .logo-bosch { background: linear-gradient(135deg, #e60000, #ff3333); font-size: 1.2rem; }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #222;
+            font-size: 1.05rem;
+            margin-bottom: 3px;
+        }
+
+        .timeline-org {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .timeline-date {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Publications */
+        .publication-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+
+        .pub-title {
+            font-weight: 600;
+            color: #222;
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+        }
+
+        .pub-authors {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .pub-venue {
+            color: #17a2b8;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .pub-links {
+            margin-top: 10px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .pub-links a {
+            font-size: 0.85rem;
+            padding: 3px 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            color: #666;
+        }
+
+        .pub-links a:hover {
+            border-color: #17a2b8;
+            color: #17a2b8;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            nav .right {
+                display: none;
+            }
+
+            .profile h1 {
+                font-size: 2rem;
+            }
+
+            .update-item {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .update-date {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="left">
+                <a href="#home">Home</a>
+                <span style="color: #ddd;">|</span>
+                <div class="social-icons">
+                    <a href="mailto:icanry@sogang.ac.kr" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/happyryanchang/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://scholar.google.com/" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                </div>
+            </div>
+            <div class="right">
+                <a href="#home">HOME</a>
+                <a href="#education">EDUCATION</a>
+                <a href="#experience">EXPERIENCE</a>
+                <a href="#publications">PUBLICATIONS</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="profile" id="home">
+            <!-- 프로필 사진을 교체하려면 아래 div를 img 태그로 변경하세요 -->
+            <!-- <img src="your-photo.jpg" alt="Raeyoung Chang" class="profile-img"> -->
+            <div class="profile-img">RC</div>
+            
+            <h1>Raeyoung Chang</h1>
+            <div class="title-line"></div>
+            <p class="subtitle">M.S. Student in Computer Science (AI), Sogang University</p>
+            
+            <a href="#" class="cv-btn">
+                <i class="fas fa-file-alt"></i> CV
+            </a>
+        </section>
+
+        <section class="bio">
+            <p>
+                Hello! I am a Master's student in Computer Science (AI) at <a href="https://sogang.ac.kr" target="_blank">Sogang University</a>, 
+                working in the Bigdata Processing & DB Lab. I am also participating in the 2025 AI Convergence Education Program 
+                at the <a href="https://www.utoronto.ca/" target="_blank">University of Toronto</a>, sponsored by the Korean Government (IITP), 
+                where I collaborate with the LG Toronto AI Lab.
+            </p>
+            <p>
+                Previously, I graduated from <a href="https://www.konkuk.ac.kr" target="_blank">Konkuk University</a> with a degree in 
+                Management of Technology and Real Estate, and worked at Hyundai Department Store Group in the Marketing Team. 
+                I also completed the POSCO AI·Big Data program at POSTECH.
+            </p>
+            <p>My current research topics are:</p>
+            <ol class="research-topics">
+                <li>Multi-Agent Systems and evaluation frameworks for Agentic AI</li>
+                <li>Knowledge Graph–based Retrieval-Augmented Generation (KG-RAG)</li>
+                <li>Video Anomaly Detection with spatio-temporal efficiency</li>
+            </ol>
+            <p>Reach out to me with anything you want to talk about!</p>
+        </section>
+
+        <section class="section" id="updates">
+            <h2>Updates</h2>
+            <div class="updates-list">
+                <div class="update-item">
+                    <span class="update-date">Dec 2025</span>
+                    <div class="update-content">
+                        <span class="update-tag tag-teaching">Teaching</span>
+                        Served as AI Teaching Assistant for LG U+ Vibe Coding Program
+                    </div>
+                </div>
+                <div class="update-item">
+                    <span class="update-date">Nov 2025</span>
+                    <div class="update-content">
+                        <span class="update-tag tag-paper">Paper</span>
+                        <strong>GEMMAS</strong> accepted to EMNLP 2025 Industry Track (Oral)
+                    </div>
+                </div>
+                <div class="update-item">
+                    <span class="update-date">Sep 2025</span>
+                    <div class="update-content">
+                        <span class="update-tag tag-teaching">Teaching</span>
+                        AI Mentor for Samsung Fire & Marine Insurance AI Business Expert Program
+                    </div>
+                </div>
+                <div class="update-item">
+                    <span class="update-date">Jan 2025</span>
+                    <div class="update-content">
+                        <span class="update-tag tag-award">Award</span>
+                        Selected for University of Toronto AI Convergence Program (Government Scholarship)
+                    </div>
+                </div>
+                <div class="update-item">
+                    <span class="update-date">Dec 2024</span>
+                    <div class="update-content">
+                        <span class="update-tag tag-talk">Talk</span>
+                        Oral presentation at KSC 2024 on session-based recommendation systems
+                    </div>
+                </div>
+                <div class="update-item">
+                    <span class="update-date">Oct 2024</span>
+                    <div class="update-content">
+                        <span class="update-tag tag-award">Award</span>
+                        Finalist at 2024 Busan DX Challenge (Data Processing & Visualization)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="education">
+            <h2>Education</h2>
+            <div class="timeline-list">
+                <div class="timeline-item">
+                    <div class="timeline-logo logo-uoft">UofT</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Graduate Research Exchange (AI Convergence Program)</div>
+                        <div class="timeline-org">University of Toronto <span class="timeline-date">Jan. 2025 - Jul. 2025</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-logo logo-sogang">SG</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">M.S. Computer Science (AI)</div>
+                        <div class="timeline-org">Sogang University <span class="timeline-date">Feb. 2024 - Present</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-logo logo-konkuk">KU</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">B.A. Management of Technology and Real Estate</div>
+                        <div class="timeline-org">Konkuk University <span class="timeline-date">Mar. 2012 - Feb. 2019</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="experience">
+            <h2>Professional Experience</h2>
+            <div class="timeline-list">
+                <div class="timeline-item">
+                    <div class="timeline-logo logo-lg">LG</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">AI Research Project</div>
+                        <div class="timeline-org">LG Electronics Canada (Toronto AI Lab) <span class="timeline-date">Jan. 2025 - Present</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-logo logo-samsung">SSI</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">AI Mentor</div>
+                        <div class="timeline-org">Samsung Fire & Marine Insurance <span class="timeline-date">Sep. 2025 - Oct. 2025</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-logo logo-postech">POS</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">AI·Big Data Program</div>
+                        <div class="timeline-org">POSTECH Institute of Artificial Intelligence <span class="timeline-date">Apr. 2023 - Jul. 2023</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-logo logo-hyundai">H</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Marketing Team</div>
+                        <div class="timeline-org">Hyundai Department Store Group <span class="timeline-date">Apr. 2019 - May. 2022</span></div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-logo logo-bosch">B</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Global Sales Team Intern</div>
+                        <div class="timeline-org">Robert Bosch Korea <span class="timeline-date">Jul. 2018 - Dec. 2018</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="publications">
+            <h2>Publications</h2>
+            
+            <div class="publication-item">
+                <div class="pub-title">GEMMAS: Graph-based Evaluation Metrics for Multi Agent Systems</div>
+                <div class="pub-authors"><strong>Raeyoung Chang</strong>, et al.</div>
+                <div class="pub-venue">EMNLP 2025 Industry Track (Oral Session)</div>
+                <div class="pub-links">
+                    <a href="https://arxiv.org/abs/2507.13190" target="_blank"><i class="fas fa-file-pdf"></i> arXiv</a>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="pub-title">Session-based Recommendation System through a Session Graph Creation</div>
+                <div class="pub-authors"><strong>Raeyoung Chang</strong>, et al.</div>
+                <div class="pub-venue">KSC 2024 (Oral Session)</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Raeyoung Chang. Last updated: January 2025.</p>
+    </footer>
+</body>
+</html>
